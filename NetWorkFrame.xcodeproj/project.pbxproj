@@ -23,7 +23,6 @@
 		B0A9D6D21B4277120069CA8B /* TcpServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0A9D6CB1B4277120069CA8B /* TcpServer.cpp */; };
 		B0A9D6D31B4277120069CA8B /* UdpServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0A9D6CD1B4277120069CA8B /* UdpServer.cpp */; };
 		B0BF8B281B46398800E71FE2 /* RootViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = B0BF8B271B46398800E71FE2 /* RootViewController.mm */; };
-		B0BF8B331B468BD100E71FE2 /* GSDataPool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0BF8B311B468BD100E71FE2 /* GSDataPool.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B09ADF001B47EEE90065987F /* GSTestDataPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSTestDataPool.h; sourceTree = "<group>"; };
 		B09CB08D1B4520E90014DD4B /* ByteBuffer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ByteBuffer.h; sourceTree = "<group>"; };
 		B0A9D69C1B426E4F0069CA8B /* NetWorkFrame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetWorkFrame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0A9D6A01B426E500069CA8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -62,8 +62,6 @@
 		B0BF8B261B46398800E71FE2 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		B0BF8B271B46398800E71FE2 /* RootViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RootViewController.mm; sourceTree = "<group>"; };
 		B0BF8B2A1B464F5F00E71FE2 /* PackDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PackDefine.h; sourceTree = "<group>"; };
-		B0BF8B311B468BD100E71FE2 /* GSDataPool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GSDataPool.cpp; sourceTree = "<group>"; };
-		B0BF8B321B468BD100E71FE2 /* GSDataPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSDataPool.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,10 +158,9 @@
 			children = (
 				B09CB08D1B4520E90014DD4B /* ByteBuffer.h */,
 				B0BF8B2A1B464F5F00E71FE2 /* PackDefine.h */,
-				B0BF8B311B468BD100E71FE2 /* GSDataPool.cpp */,
-				B0BF8B321B468BD100E71FE2 /* GSDataPool.h */,
 				B0A9D6C91B4277120069CA8B /* GUtils.cpp */,
 				B0A9D6CA1B4277120069CA8B /* GUtils.h */,
+				B09ADF001B47EEE90065987F /* GSTestDataPool.h */,
 				B0A9D6C51B4277120069CA8B /* GNetServer.cpp */,
 				B0A9D6C61B4277120069CA8B /* GNetServer.h */,
 				B0A9D6CB1B4277120069CA8B /* TcpServer.cpp */,
@@ -280,7 +277,6 @@
 				B0A9D6D21B4277120069CA8B /* TcpServer.cpp in Sources */,
 				B0A9D6A21B426E500069CA8B /* main.m in Sources */,
 				B0A9D6D31B4277120069CA8B /* UdpServer.cpp in Sources */,
-				B0BF8B331B468BD100E71FE2 /* GSDataPool.cpp in Sources */,
 				B0A9D6D11B4277120069CA8B /* GUtils.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

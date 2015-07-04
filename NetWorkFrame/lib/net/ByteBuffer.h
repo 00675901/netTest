@@ -41,8 +41,7 @@ public:
     void append(const ByteBuffer& buffer){
         if (buffer.size()) append(buffer.contents(),buffer.size());
     }
-    void append(const uint8_t *src, size_t cnt)
-    {
+    void append(const uint8_t *src, size_t cnt){
         if (!cnt) return;
 //        assert(size() < 10000000);
         if (BData.size() < BWPos + cnt){
@@ -52,20 +51,17 @@ public:
         BWPos += cnt;
     }
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    template <typename T> T read()
-    {
+    template <typename T> T read(){
         T r = read<T>(BRPos);
         BRPos += sizeof(T);
         return r;
     };
-    template <typename T> T read(size_t pos) const
-    {
+    template <typename T> T read(size_t pos) const{
 //        assert(pos + sizeof(T) <= size() || PrintPosError(false,pos,sizeof(T)));
         return *((T const*)&BData[pos]);
     }
     
-    void read(uint8_t *dest, size_t len)
-    {
+    void read(uint8_t *dest, size_t len){
 //        assert(BRPos  + len  <= size() || PrintPosError(false, BRPos,len));
         memcpy(dest, &BData[BRPos], len);
         BRPos += len;
@@ -210,3 +206,106 @@ public:
         return *this;
     }
 };
+
+//////////////////////////////////////////////////////////////////////////
+// std::vector
+//////////////////////////////////////////////////////////////////////////
+#ifdef _VECTOR_
+template <typename T>
+ByteBuffer& operator<<(ByteBuffer& b, const std::vector<T>& v)
+{
+    b << (uint32)v.size();
+    
+    typename std::vector<T>::const_iterator iter	= v.begin();
+    typename std::vector<T>::const_iterator& iEnd	= v.end();
+    for (; iter != iEnd; ++iter)
+    {
+        b << *iter;
+    }
+    return b;
+}
+
+template <typename T>
+ByteBuffer& operator>>(ByteBuffer& b, std::vector<T>& v)
+{
+    uint32 vsize;
+    b >> vsize;
+    v.clear();
+    while (vsize--)
+    {
+        T t;
+        b >> t;
+        v.push_back(t);
+    }
+    return b;
+}
+#endif
+
+//////////////////////////////////////////////////////////////////////////
+// std::list
+//////////////////////////////////////////////////////////////////////////
+#ifdef _LIST_
+template <typename T>
+ByteBuffer& operator<<(ByteBuffer& b, const std::list<T>& v)
+{
+    b << (uint32)v.size();
+    
+    typename std::list<T>::const_iterator iter	= v.begin();
+    typename std::list<T>::const_iterator& iEnd	= v.end();
+    for (; iter != iEnd; ++iter)
+    {
+        b << *iter;
+    }
+    return b;
+}
+
+template <typename T>
+ByteBuffer& operator>>(ByteBuffer& b, std::list<T>& v)
+{
+    uint32 vsize;
+    b >> vsize;
+    v.clear();
+    while (vsize--)
+    {
+        T t;
+        b >> t;
+        v.push_back(t);
+    }
+    return b;
+}
+#endif
+
+//////////////////////////////////////////////////////////////////////////
+// std::map
+//////////////////////////////////////////////////////////////////////////
+#ifdef _MAP_
+template <typename K, typename V>
+ByteBuffer& operator<<(ByteBuffer& b, const std::map<K, V>& m)
+{
+    b << (uint32)m.size();
+    
+    typename std::map<K, V>::const_iterator iter = m.begin();
+    typename std::map<K, V>::const_iterator iEnd = m.end();
+    for (; iter != iEnd; ++iter)
+    {
+        b << iter->first << iter->second;
+    }
+    return b;
+}
+
+template <typename K, typename V>
+ByteBuffer &operator>>(ByteBuffer& b, std::map<K, V>& m)
+{
+    uint32 msize;
+    b >> msize;
+    m.clear();
+    while (msize--)
+    {
+        K k;
+        V v;
+        b >> k >> v;
+        m.insert(std::make_pair(k, v));
+    }
+    return b;
+}
+#endif
