@@ -20,7 +20,7 @@ public:
         pthread_mutex_destroy(&mutex);
         printf("GSDataPool Destroy\n");
     }
-    T getData(){
+    T* getData(){
         return GSData;
     }
 };

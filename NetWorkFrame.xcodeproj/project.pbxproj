@@ -23,6 +23,7 @@
 		B0A9D6D21B4277120069CA8B /* TcpServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0A9D6CB1B4277120069CA8B /* TcpServer.cpp */; };
 		B0A9D6D31B4277120069CA8B /* UdpServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0A9D6CD1B4277120069CA8B /* UdpServer.cpp */; };
 		B0BF8B281B46398800E71FE2 /* RootViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = B0BF8B271B46398800E71FE2 /* RootViewController.mm */; };
+		C8A45AB51B49546800D9FDD4 /* TestMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8A45AB31B49546800D9FDD4 /* TestMain.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,10 @@
 		B0BF8B261B46398800E71FE2 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		B0BF8B271B46398800E71FE2 /* RootViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RootViewController.mm; sourceTree = "<group>"; };
 		B0BF8B2A1B464F5F00E71FE2 /* PackDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PackDefine.h; sourceTree = "<group>"; };
+		C8A45AB11B4927FB00D9FDD4 /* GSDataPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSDataPool.h; sourceTree = "<group>"; };
+		C8A45AB31B49546800D9FDD4 /* TestMain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestMain.cpp; path = lib/net/TestMain.cpp; sourceTree = "<group>"; };
+		C8A45AB41B49546800D9FDD4 /* TestMain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestMain.h; path = lib/net/TestMain.h; sourceTree = "<group>"; };
+		C8A45AB61B495B3800D9FDD4 /* GSDataPoolDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSDataPoolDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +109,8 @@
 		B0A9D69E1B426E500069CA8B /* NetWorkFrame */ = {
 			isa = PBXGroup;
 			children = (
+				C8A45AB31B49546800D9FDD4 /* TestMain.cpp */,
+				C8A45AB41B49546800D9FDD4 /* TestMain.h */,
 				B0BF8B261B46398800E71FE2 /* RootViewController.h */,
 				B0BF8B271B46398800E71FE2 /* RootViewController.mm */,
 				B0A9D6A31B426E500069CA8B /* AppDelegate.h */,
@@ -158,15 +165,17 @@
 			children = (
 				B09CB08D1B4520E90014DD4B /* ByteBuffer.h */,
 				B0BF8B2A1B464F5F00E71FE2 /* PackDefine.h */,
+				C8A45AB11B4927FB00D9FDD4 /* GSDataPool.h */,
+				C8A45AB61B495B3800D9FDD4 /* GSDataPoolDelegate.h */,
+				B09ADF001B47EEE90065987F /* GSTestDataPool.h */,
 				B0A9D6C91B4277120069CA8B /* GUtils.cpp */,
 				B0A9D6CA1B4277120069CA8B /* GUtils.h */,
-				B09ADF001B47EEE90065987F /* GSTestDataPool.h */,
-				B0A9D6C51B4277120069CA8B /* GNetServer.cpp */,
-				B0A9D6C61B4277120069CA8B /* GNetServer.h */,
 				B0A9D6CB1B4277120069CA8B /* TcpServer.cpp */,
 				B0A9D6CC1B4277120069CA8B /* TcpServer.h */,
 				B0A9D6CD1B4277120069CA8B /* UdpServer.cpp */,
 				B0A9D6CE1B4277120069CA8B /* UdpServer.h */,
+				B0A9D6C51B4277120069CA8B /* GNetServer.cpp */,
+				B0A9D6C61B4277120069CA8B /* GNetServer.h */,
 			);
 			path = net;
 			sourceTree = "<group>";
@@ -215,7 +224,7 @@
 		B0A9D68F1B426D4F0069CA8B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastUpgradeCheck = 0640;
 				TargetAttributes = {
 					B0A9D69B1B426E4F0069CA8B = {
 						CreatedOnToolsVersion = 6.3.2;
@@ -274,6 +283,7 @@
 				B0A9D6CF1B4277120069CA8B /* GNetServer.cpp in Sources */,
 				B0A9D6A81B426E500069CA8B /* ViewController.m in Sources */,
 				B0A9D6A51B426E500069CA8B /* AppDelegate.m in Sources */,
+				C8A45AB51B49546800D9FDD4 /* TestMain.cpp in Sources */,
 				B0A9D6D21B4277120069CA8B /* TcpServer.cpp in Sources */,
 				B0A9D6A21B426E500069CA8B /* main.m in Sources */,
 				B0A9D6D31B4277120069CA8B /* UdpServer.cpp in Sources */,
@@ -326,6 +336,7 @@
 		B0A9D6931B426D500069CA8B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ONLY_ACTIVE_ARCH = YES;
 			};
 			name = Debug;
 		};

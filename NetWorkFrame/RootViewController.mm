@@ -1,13 +1,22 @@
 #import "RootViewController.h"
 #import "PackDefine.h"
 #include "GSTestDataPool.h"
+#include "GSDataPool.h"
 #include <map>
 #include <vector>
 #include <stdio.h>
+#include "TestMain.h"
 
 @implementation RootViewController
 
-GSTestDataPool<std::map<std::string, int>> *tp;
+TestMain tMain;
+
+//GSTestDataPool<std::map<std::string, int>> *tp;
+//std::map<std::string,int> tm;
+//GSTestDataPool<std::map<std::string,int>> aa(&tm);
+//
+//std::vector<std::string> tma;
+//GSTestDataPool<std::vector<std::string>> bb(&tma);
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     
@@ -21,14 +30,17 @@ GSTestDataPool<std::map<std::string, int>> *tp;
 //    std::cout<<(const char*)bb.contents()<<"("<<bb.size()<<")"<<std::endl;
 //    bb>>msg;
 //    std::cout<<msg.NPCode<<"("<<msg.data<<")"<<std::endl;
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    
-    
-    
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    tMain.begin();
     [super viewDidLoad];
 }
 
 -(IBAction)seta1:(id)sender{
+//    std::map<std::string,int> *tmx=aa.getData();
+//    tmx->insert(std::make_pair("testtest1", 123));
+//    tmx->insert(std::make_pair("testtest2", 456));
+//    tmx->insert(std::make_pair("testtest3", 678));
+//    tmx->insert(std::make_pair("testtest4", 9));
 //    std::map<std::string,int> *aaa=(std::map<std::string,int>*)gsd->getData("tempdata2");
 //    std::cout<<"size1="<<aaa->size()<<std::endl;
 //    for (int i=0; i<10; i++) {
@@ -38,29 +50,25 @@ GSTestDataPool<std::map<std::string, int>> *tp;
 //    }
 }
 -(IBAction)geta1:(id)sender{
-//    GSDataPool *gsd=GSDataPool::shareInstance();
-//    std::map<std::string,int> *c=(std::map<std::string,int>*)gsd->getData("tempdata2");
+//    std::map<std::string,int> *tmx=aa.getData();
 //    std::map<std::string,int>::iterator iters;
-//    std::cout<<"size2="<<c->size()<<std::endl;
-//    for (iters=c->begin(); iters!=c->end(); ++iters) {
+//    std::cout<<"size2="<<tmx->size()<<std::endl;
+//    for (iters=tmx->begin(); iters!=tmx->end(); ++iters) {
 //        std::cout<<"key="<<iters->first<<" value="<<iters->second<<std::endl;
 //    }
 }
 
 -(IBAction)seta2:(id)sender{
-//    GSDataPool *gsd=GSDataPool::shareInstance();
-//    std::map<int,int> *bbb=(std::map<int,int>*)gsd->getData("tempdata1");
-//    typedef std::pair<int,int> ccc;
-//    for (int i=0; i<10; i++) {
-//        bbb->insert(ccc(i,i+2));
-//    }
+//    std::vector<std::string> *tmx=bb.getData();
+//    tmx->push_back("aa");
+//    tmx->push_back("bb");
+//    tmx->push_back("cc");
 }
 -(IBAction)geta2:(id)sender{
-//    GSDataPool *gsd=GSDataPool::shareInstance();
-//    std::map<int,int> *c=(std::map<int,int>*)gsd->getData("tempdata1");
-//    std::map<int,int>::iterator iters;
-//    for (iters=c->begin(); iters!=c->end(); ++iters) {
-//        std::cout<<"key="<<iters->first<<" value="<<iters->second<<std::endl;
+//    std::vector<std::string> *tmx=bb.getData();
+//    std::vector<std::string>::iterator iters;
+//    for (iters=tmx->begin(); iters!=tmx->end(); ++iters) {
+//        std::cout<<"key="<<*iters<<std::endl;
 //    }
 }
 
