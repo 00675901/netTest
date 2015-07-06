@@ -1,6 +1,6 @@
 //
 //  GUtils.h
-//  TestCocos2dx
+//  Cocos2dx
 //
 
 #ifndef __TestCocos2dx__GUtils__

@@ -1,6 +1,5 @@
 //
 //  TcpServer.h
-//  cocos2dxTest
 //
 
 #ifndef __cocos2dxTest__TcpServer__
@@ -18,10 +17,6 @@ private:
     sockaddr_in localAddr;
     sockaddr_in remoteAddr;
 public:
-    typedef struct{
-        std::string opcode;
-        std::string data;
-    }GCData;
     TcpServer(int listenPort);
     ~TcpServer();
     int iniServer(int instenCount);
@@ -32,9 +27,6 @@ public:
     
     long sendData(int remoteSo,char* msg);
     long recvData(int remoteSo,char* buffer);
-    
-    long sendData(int fd,GCData* pack);
-    long recvData(int fd,GCData* pack);
 };
 #endif /* defined(__cocos2dxTest__TcpServer__) */
 

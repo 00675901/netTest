@@ -1,6 +1,6 @@
 //
 //  Utils.cpp
-//  TestCocos2dx
+//  Cocos2dx
 //
 
 #include "GUtils.h"

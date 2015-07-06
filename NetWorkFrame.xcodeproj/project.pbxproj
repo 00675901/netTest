@@ -22,6 +22,7 @@
 		B0A9D6D11B4277120069CA8B /* GUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0A9D6C91B4277120069CA8B /* GUtils.cpp */; };
 		B0A9D6D21B4277120069CA8B /* TcpServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0A9D6CB1B4277120069CA8B /* TcpServer.cpp */; };
 		B0A9D6D31B4277120069CA8B /* UdpServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0A9D6CD1B4277120069CA8B /* UdpServer.cpp */; };
+		B0AFEAB11B4A62FA000D3A04 /* GNetApplications.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0AFEAAF1B4A62FA000D3A04 /* GNetApplications.cpp */; };
 		B0BF8B281B46398800E71FE2 /* RootViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = B0BF8B271B46398800E71FE2 /* RootViewController.mm */; };
 		C8A45AB51B49546800D9FDD4 /* TestMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8A45AB31B49546800D9FDD4 /* TestMain.cpp */; };
 /* End PBXBuildFile section */
@@ -60,6 +61,9 @@
 		B0A9D6CC1B4277120069CA8B /* TcpServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TcpServer.h; sourceTree = "<group>"; };
 		B0A9D6CD1B4277120069CA8B /* UdpServer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UdpServer.cpp; sourceTree = "<group>"; };
 		B0A9D6CE1B4277120069CA8B /* UdpServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UdpServer.h; sourceTree = "<group>"; };
+		B0AFEAAF1B4A62FA000D3A04 /* GNetApplications.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GNetApplications.cpp; sourceTree = "<group>"; };
+		B0AFEAB01B4A62FA000D3A04 /* GNetApplications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNetApplications.h; sourceTree = "<group>"; };
+		B0AFEAB21B4A8B63000D3A04 /* GSObserver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GSObserver.h; sourceTree = "<group>"; };
 		B0BF8B261B46398800E71FE2 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		B0BF8B271B46398800E71FE2 /* RootViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RootViewController.mm; sourceTree = "<group>"; };
 		B0BF8B2A1B464F5F00E71FE2 /* PackDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PackDefine.h; sourceTree = "<group>"; };
@@ -176,6 +180,9 @@
 				B0A9D6CE1B4277120069CA8B /* UdpServer.h */,
 				B0A9D6C51B4277120069CA8B /* GNetServer.cpp */,
 				B0A9D6C61B4277120069CA8B /* GNetServer.h */,
+				B0AFEAB21B4A8B63000D3A04 /* GSObserver.h */,
+				B0AFEAAF1B4A62FA000D3A04 /* GNetApplications.cpp */,
+				B0AFEAB01B4A62FA000D3A04 /* GNetApplications.h */,
 			);
 			path = net;
 			sourceTree = "<group>";
@@ -279,6 +286,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0AFEAB11B4A62FA000D3A04 /* GNetApplications.cpp in Sources */,
 				B0BF8B281B46398800E71FE2 /* RootViewController.mm in Sources */,
 				B0A9D6CF1B4277120069CA8B /* GNetServer.cpp in Sources */,
 				B0A9D6A81B426E500069CA8B /* ViewController.m in Sources */,

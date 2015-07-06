@@ -1,6 +1,5 @@
 //
 //  UDPServer.cpp
-//  cocos2dxTest
 //
 
 #include "UdpServer.h"

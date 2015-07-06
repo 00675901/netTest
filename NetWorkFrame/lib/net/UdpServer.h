@@ -1,6 +1,5 @@
 //
 //  UDPServer.h
-//  cocos2dxTest
 //
 
 #ifndef __cocos2dxTest__UdpServer__

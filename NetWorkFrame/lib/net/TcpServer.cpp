@@ -1,6 +1,5 @@
 //
 //  TcpServer.cpp
-//  cocos2dxTest
 //
 //  Server:Socket->bind->listen->accept
 //  Client:Socket->connect
@@ -103,42 +102,4 @@ long TcpServer::sendData(int remoteSo,char* msg){
     long len=strlen(msg);
     long re=send(remoteSo, msg, len, 0);
     return re;
-}
-
-long TcpServer::sendData(int fd,GCData* pack){
-    if (pack->opcode.empty()) {
-        pack->opcode="0000";
-    }
-    long oplen=pack->opcode.length();
-    if (oplen==4) {
-        long len=pack->data.length()+4;
-        char sh[5];
-        sprintf(sh,"%04ld",len);
-        long isl=len+4;
-        char sendchar[isl];
-        sprintf(sendchar,"%s%s%s",sh,pack->opcode.c_str(),pack->data.c_str());
-        long re=send(fd,sendchar,isl,MSG_WAITALL);
-        printf("sendCC:%s\nsend:%s\nopc:%s\nsize:%ld\n",sh,pack->data.c_str(),pack->opcode.c_str(),re);
-        return re;
-    }else{
-        printf("sendData error:opcode Error\n");
-        return -1;
-    }
-}
-long TcpServer::recvData(int fd,GCData* pack){
-    char bufhead[5];
-    long ret=recv(fd, bufhead, 4, MSG_WAITALL);
-    int dl=0;
-    if (ret==4) {
-        bufhead[4]='\0';
-        dl=GUtils::ctoi(bufhead);
-    }
-    if (dl>0) {
-        char bufcon[dl];
-        ret=recv(fd, bufcon, dl, MSG_WAITALL);
-        std::string tempcon=bufcon;
-        pack->opcode=tempcon.substr(0,4);
-        pack->data=tempcon.substr(4,dl-4);
-    }
-    return ret;
 }

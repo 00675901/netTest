@@ -1,22 +1,21 @@
 //
 //  GNetServer.h
-//  TestCocos2dx
+//  Cocos2dx
 //
 
 #ifndef __TestCocos2dx__GNetServer__
 #define __TestCocos2dx__GNetServer__
 
 #include <sys/select.h>
-#include <deque>
+#include <vector>
 #include <map>
 #include "TcpServer.h"
 #include "UdpServer.h"
 #include "pthread.h"
-//#include "GSNotificationPool.h"
-#include "GUtils.h"
+#include "PackDefine.h"
+#include "GSObserver.h"
 
-using namespace std;
-//USING_NS_CC;
+//using namespace std;
 
 #define SERVER_STOP 0
 #define SERVER_S_RUN 1
@@ -32,8 +31,7 @@ using namespace std;
 
 class GNetServer{
 private:
-    GNetServer(void);
-    ~GNetServer(void);
+    std::map<std::string,GSObserver*> obmap;
     
     //public system member
     UdpServer *udps;
@@ -43,10 +41,9 @@ private:
     unsigned int localIP;
     int localFD;
     const char* localName;
-    map<int,unsigned int> remoteFDIP;
-    map<int,string> remoteFDName;
-    deque<string> loglist;
+    std::map<int,unsigned int> remoteFDIP;
     fd_set rfdset;
+    ByteBuffer bb;
     
     //UDP Send localIP Service function
     int maxLinsten;
@@ -55,22 +52,43 @@ private:
     pthread_t tidListenRoomService;
     
     //UDP search response
-    map<int, string> serverList;
-    map<int,int> serverListStatus;
+    std::map<int, std::string> serverList;
+    std::map<int,int> serverListStatus;
     pthread_t tidSearchServer;
     pthread_t tidRecvServer;
     
     //TCP connect
     pthread_t tidConnectService;
+    
 public:
-    static GNetServer* shareInstance();
+    GNetServer(void){
+        serverStatus=SERVER_STOP;
+        pthread_mutex_init(&mut, NULL);
+        printf("GNetServer BEGIN\n");
+    }
+    ~GNetServer(void){
+        obmap.clear();
+        pthread_mutex_destroy(&mut);
+        printf("GNetServer END\n");
+    }
+    //netService secretary
+    void addObs(std::string name ,GSObserver* gob){obmap.insert(std::make_pair(name, gob));}
+    void removeObs(std::string name){obmap.erase(name);}
+    void notify(std::string name,GNPacket tp){
+        obmap[name]->Update(tp);
+    }
+    void notify(GNPacket tp){
+        std::map<std::string,GSObserver*>::iterator iter=obmap.begin();
+        while (iter!=obmap.end()) {
+            ((*iter).second)->Update(tp);
+            iter++;
+        }
+    }
     
     //use member function
     unsigned int getLocalIP();
     const char* getLocalName();
-    map<int,unsigned int> getRemoteFDIP();
-    map<int,string> getRemoteFDName();
-    deque<string> getLoglist();
+    std::map<int,unsigned int> getRemoteFDIP();
     
     //UDP Send localIP Service function
     void startResponseService(int maxl,const char* uname);
