@@ -1,7 +1,5 @@
 #import "RootViewController.h"
 #import "PackDefine.h"
-#include "GSTestDataPool.h"
-#include "GSDataPool.h"
 #include <map>
 #include <vector>
 #include <stdio.h>

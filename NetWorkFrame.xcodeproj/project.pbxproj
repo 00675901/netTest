@@ -11,6 +11,8 @@
 		B09CB0921B4524070014DD4B /* GUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0A9D6C91B4277120069CA8B /* GUtils.cpp */; };
 		B09CB0941B4524070014DD4B /* TcpServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0A9D6CB1B4277120069CA8B /* TcpServer.cpp */; };
 		B09CB0961B4524070014DD4B /* UdpServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0A9D6CD1B4277120069CA8B /* UdpServer.cpp */; };
+		B0A0147E1B4BE6A700FDCFE4 /* GApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0A0147D1B4BE6A700FDCFE4 /* GApp.cpp */; };
+		B0A014801B4BE98F00FDCFE4 /* GConApplications.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0A0147F1B4BE98F00FDCFE4 /* GConApplications.cpp */; };
 		B0A9D6A21B426E500069CA8B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A9D6A11B426E500069CA8B /* main.m */; };
 		B0A9D6A51B426E500069CA8B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A9D6A41B426E500069CA8B /* AppDelegate.m */; };
 		B0A9D6A81B426E500069CA8B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A9D6A71B426E500069CA8B /* ViewController.m */; };
@@ -38,8 +40,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B09ADF001B47EEE90065987F /* GSTestDataPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSTestDataPool.h; sourceTree = "<group>"; };
 		B09CB08D1B4520E90014DD4B /* ByteBuffer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ByteBuffer.h; sourceTree = "<group>"; };
+		B0A014791B4B889500FDCFE4 /* GApp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GApp.h; sourceTree = "<group>"; };
+		B0A0147B1B4BE34600FDCFE4 /* GConApplications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GConApplications.h; sourceTree = "<group>"; };
+		B0A0147D1B4BE6A700FDCFE4 /* GApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GApp.cpp; sourceTree = "<group>"; };
+		B0A0147F1B4BE98F00FDCFE4 /* GConApplications.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GConApplications.cpp; sourceTree = "<group>"; };
+		B0A014821B4BEA9C00FDCFE4 /* GConInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GConInterface.h; sourceTree = "<group>"; };
 		B0A9D69C1B426E4F0069CA8B /* NetWorkFrame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetWorkFrame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0A9D6A01B426E500069CA8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B0A9D6A11B426E500069CA8B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -63,14 +69,12 @@
 		B0A9D6CE1B4277120069CA8B /* UdpServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UdpServer.h; sourceTree = "<group>"; };
 		B0AFEAAF1B4A62FA000D3A04 /* GNetApplications.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GNetApplications.cpp; sourceTree = "<group>"; };
 		B0AFEAB01B4A62FA000D3A04 /* GNetApplications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNetApplications.h; sourceTree = "<group>"; };
-		B0AFEAB21B4A8B63000D3A04 /* GSObserver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GSObserver.h; sourceTree = "<group>"; };
+		B0AFEAB21B4A8B63000D3A04 /* GNetObserver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GNetObserver.h; sourceTree = "<group>"; };
 		B0BF8B261B46398800E71FE2 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		B0BF8B271B46398800E71FE2 /* RootViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RootViewController.mm; sourceTree = "<group>"; };
 		B0BF8B2A1B464F5F00E71FE2 /* PackDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PackDefine.h; sourceTree = "<group>"; };
-		C8A45AB11B4927FB00D9FDD4 /* GSDataPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSDataPool.h; sourceTree = "<group>"; };
 		C8A45AB31B49546800D9FDD4 /* TestMain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestMain.cpp; path = lib/net/TestMain.cpp; sourceTree = "<group>"; };
 		C8A45AB41B49546800D9FDD4 /* TestMain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestMain.h; path = lib/net/TestMain.h; sourceTree = "<group>"; };
-		C8A45AB61B495B3800D9FDD4 /* GSDataPoolDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSDataPoolDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,9 +173,6 @@
 			children = (
 				B09CB08D1B4520E90014DD4B /* ByteBuffer.h */,
 				B0BF8B2A1B464F5F00E71FE2 /* PackDefine.h */,
-				C8A45AB11B4927FB00D9FDD4 /* GSDataPool.h */,
-				C8A45AB61B495B3800D9FDD4 /* GSDataPoolDelegate.h */,
-				B09ADF001B47EEE90065987F /* GSTestDataPool.h */,
 				B0A9D6C91B4277120069CA8B /* GUtils.cpp */,
 				B0A9D6CA1B4277120069CA8B /* GUtils.h */,
 				B0A9D6CB1B4277120069CA8B /* TcpServer.cpp */,
@@ -180,9 +181,14 @@
 				B0A9D6CE1B4277120069CA8B /* UdpServer.h */,
 				B0A9D6C51B4277120069CA8B /* GNetServer.cpp */,
 				B0A9D6C61B4277120069CA8B /* GNetServer.h */,
-				B0AFEAB21B4A8B63000D3A04 /* GSObserver.h */,
+				B0AFEAB21B4A8B63000D3A04 /* GNetObserver.h */,
 				B0AFEAAF1B4A62FA000D3A04 /* GNetApplications.cpp */,
 				B0AFEAB01B4A62FA000D3A04 /* GNetApplications.h */,
+				B0A014821B4BEA9C00FDCFE4 /* GConInterface.h */,
+				B0A0147B1B4BE34600FDCFE4 /* GConApplications.h */,
+				B0A0147F1B4BE98F00FDCFE4 /* GConApplications.cpp */,
+				B0A014791B4B889500FDCFE4 /* GApp.h */,
+				B0A0147D1B4BE6A700FDCFE4 /* GApp.cpp */,
 			);
 			path = net;
 			sourceTree = "<group>";
@@ -291,7 +297,9 @@
 				B0A9D6CF1B4277120069CA8B /* GNetServer.cpp in Sources */,
 				B0A9D6A81B426E500069CA8B /* ViewController.m in Sources */,
 				B0A9D6A51B426E500069CA8B /* AppDelegate.m in Sources */,
+				B0A0147E1B4BE6A700FDCFE4 /* GApp.cpp in Sources */,
 				C8A45AB51B49546800D9FDD4 /* TestMain.cpp in Sources */,
+				B0A014801B4BE98F00FDCFE4 /* GConApplications.cpp in Sources */,
 				B0A9D6D21B4277120069CA8B /* TcpServer.cpp in Sources */,
 				B0A9D6A21B426E500069CA8B /* main.m in Sources */,
 				B0A9D6D31B4277120069CA8B /* UdpServer.cpp in Sources */,

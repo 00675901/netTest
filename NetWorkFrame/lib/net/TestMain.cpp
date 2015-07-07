@@ -5,7 +5,8 @@
 
 #include "TestMain.h"
 
-#include "GSDataPool.h"
+//#include "GNetApplications.h"
+#include "GApp.h"
 
 //typedef void(*Fun)(std::string,int);
 
@@ -18,8 +19,10 @@ void tmTest2(int aa,int bb){
 }
 
 void TestMain::begin(){
-    GSDataPool a;
+    GApp *a=new GApp();
+//    std::cout<<a->className()<<std::endl;
 //    a.postData("function1",&tmTest);
 //    a.postData("function2",&tmTest2);
+    delete a;
 }
 

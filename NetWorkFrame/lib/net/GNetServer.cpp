@@ -6,14 +6,17 @@
 #include "GNetServer.h"
 
 //use member function
-unsigned int GNetServer::getLocalIP(){
-    return localIP;
+unsigned int* GNetServer::getLocalIP(){
+    return &localIP;
 }
 const char* GNetServer::getLocalName(){
     return localName;
 }
-std::map<int,unsigned int> GNetServer::getRemoteFDIP(){
-    return remoteFDIP;
+std::map<int,unsigned int>* GNetServer::getRemoteFDIP(){
+    return &remoteFDIP;
+}
+std::map<int, std::string>* GNetServer::getTempUdpMap(){
+    return &udpMap;
 }
 
 //Send Room Service function
@@ -80,6 +83,7 @@ void* GNetServer::responseService(void* obj){
     return NULL;
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void* GNetServer::listenNetService(void* obj){
     pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, NULL);
     pthread_setcanceltype(PTHREAD_CANCEL_ASYNCHRONOUS, NULL);
@@ -175,6 +179,7 @@ void* GNetServer::listenNetService(void* obj){
     return NULL;
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void GNetServer::startSearchService(){
     if (SERVER_STOP==serverStatus) {
         serverStatus=SERVER_C_RUN;
@@ -213,9 +218,9 @@ void* GNetServer::searchServer(void* obj){
     GNetServer *temp=(GNetServer *)obj;
     UdpServer* tempudp=temp->udps;
     pthread_mutex_t* tempmut=&(temp->mut);
-    std::map<int, int>* temproomlist=&(temp->serverListStatus);
+    std::map<int, int>* temproomlist=&(temp->udpMapStatus);
     std::map<int, int>::iterator itm;
-    std::map<int, std::string>* temproomlistInfo=&(temp->serverList);
+    std::map<int, std::string>* temproomlistInfo=&(temp->udpMap);
     std::map<int, std::string>::iterator itminfo;
     while (true) {
         pthread_testcancel();
@@ -246,8 +251,8 @@ void* GNetServer::recvServerList(void* obj){
     GNetServer* tempgr=(GNetServer*)obj;
     UdpServer* tempudps=tempgr->udps;
     pthread_mutex_t* tempmut=&(tempgr->mut);
-    std::map<int, int>* temproomlist=&(tempgr->serverListStatus);
-    std::map<int, std::string>* temproomlistInfo=&(tempgr->serverList);
+    std::map<int, int>* temproomlist=&(tempgr->udpMapStatus);
+    std::map<int, std::string>* temproomlistInfo=&(tempgr->udpMap);
     std::map<int, int>::iterator itm;
     typedef std::pair<int, int> tp;
     typedef std::pair<int, std::string> ts;
@@ -265,8 +270,7 @@ void* GNetServer::recvServerList(void* obj){
             if (itm==temproomlist->end()) {
                 temproomlist->insert(tp(rip,liveCount));
                 temproomlistInfo->insert(ts(rip,tbuffer));
-//                tempgr->notify(tgcd);
-//                GSNotificationPool::shareInstance()->postNotification("updateRoomList", NULL);
+                //搜索到一个UDP信号
             }else{
                 itm->second=liveCount;
             }
@@ -276,8 +280,8 @@ void* GNetServer::recvServerList(void* obj){
     return NULL;
 }
 
-void GNetServer::startConnectService(int addr){
-    if (SERVER_STOP==serverStatus){
+void GNetServer::connectService(int addr){
+    if (SERVER_C_TCP_RUN!=serverStatus){
         serverStatus=SERVER_C_TCP_RUN;
         tcps=new TcpServer(52125);
         if ((localFD=tcps->iniServer(10))>0) {
@@ -297,7 +301,22 @@ void GNetServer::startConnectService(int addr){
     }
 }
 
-void GNetServer::stopConnectService(){
+long GNetServer::sendNetPack(int tag,GNPacket np){
+    int fd=remoteFDIP.find(tag)->first;
+    GNPacket msg;
+    bb<<msg;
+    return tcps->sendData(fd,(char*)bb.contents());
+}
+long GNetServer::sendNetPack(GNPacket np){
+    long i=0;
+    std::map<int,unsigned int>::iterator iter;
+    for (iter=remoteFDIP.begin(); iter!=remoteFDIP.end(); ++iter) {
+        i+=sendNetPack(iter->first, np);
+    }
+    return i;
+}
+
+void GNetServer::disconnectService(){
     if (SERVER_C_TCP_RUN==serverStatus){
         pthread_cancel(tidConnectService);
         std::map<int,unsigned int>::iterator iter;

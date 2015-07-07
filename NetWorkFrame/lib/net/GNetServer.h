@@ -1,6 +1,7 @@
 //
 //  GNetServer.h
 //  Cocos2dx
+//  用于完成基于TCP协议网状结构网络
 //
 
 #ifndef __TestCocos2dx__GNetServer__
@@ -13,16 +14,9 @@
 #include "UdpServer.h"
 #include "pthread.h"
 #include "PackDefine.h"
-#include "GSObserver.h"
+#include "GNetObserver.h"
 
 //using namespace std;
-
-#define SERVER_STOP 0
-#define SERVER_S_RUN 1
-#define SERVER_S_PAUSE 2
-#define SERVER_C_RUN 3
-#define SERVER_C_PAUSE 4
-#define SERVER_C_TCP_RUN 5
 
 #define GNOC_GIP ((char *)"si01")
 #define GNOC_SIP ((char *)"si02")
@@ -31,16 +25,26 @@
 
 class GNetServer{
 private:
-    std::map<std::string,GSObserver*> obmap;
+    enum{
+        SERVER_STOP,
+        SERVER_S_RUN,
+        SERVER_S_PAUSE,
+        SERVER_C_RUN,
+        SERVER_C_PAUSE,
+        SERVER_C_TCP_RUN
+    }serverStatus;
+    
+    std::map<std::string,GNetObserver*> obmap;
     
     //public system member
     UdpServer *udps;
     TcpServer *tcps;
-    int serverStatus;
+//    int serverStatus;
     pthread_mutex_t mut;
     unsigned int localIP;
     int localFD;
     const char* localName;
+    //除自己之外,fd-ip表
     std::map<int,unsigned int> remoteFDIP;
     fd_set rfdset;
     ByteBuffer bb;
@@ -51,9 +55,9 @@ private:
     pthread_t tidRoomService;
     pthread_t tidListenRoomService;
     
-    //UDP search response
-    std::map<int, std::string> serverList;
-    std::map<int,int> serverListStatus;
+    //UDP search response 用于搜寻网络
+    std::map<int, std::string> udpMap; //临时ip-描述信息表
+    std::map<int,int> udpMapStatus;
     pthread_t tidSearchServer;
     pthread_t tidRecvServer;
     
@@ -72,23 +76,24 @@ public:
         printf("GNetServer END\n");
     }
     //netService secretary
-    void addObs(std::string name ,GSObserver* gob){obmap.insert(std::make_pair(name, gob));}
+    void addObs(std::string name ,GNetObserver* gob){obmap.insert(std::make_pair(name, gob));}
     void removeObs(std::string name){obmap.erase(name);}
     void notify(std::string name,GNPacket tp){
-        obmap[name]->Update(tp);
+        obmap[name]->distributeData(tp);
     }
     void notify(GNPacket tp){
-        std::map<std::string,GSObserver*>::iterator iter=obmap.begin();
+        std::map<std::string,GNetObserver*>::iterator iter=obmap.begin();
         while (iter!=obmap.end()) {
-            ((*iter).second)->Update(tp);
+            ((*iter).second)->distributeData(tp);
             iter++;
         }
     }
     
     //use member function
-    unsigned int getLocalIP();
+    unsigned int* getLocalIP();
     const char* getLocalName();
-    std::map<int,unsigned int> getRemoteFDIP();
+    std::map<int,unsigned int>* getRemoteFDIP(); //获取除自己外fd-ip表
+    std::map<int, std::string>* getTempUdpMap();
     
     //UDP Send localIP Service function
     void startResponseService(int maxl,const char* uname);
@@ -104,11 +109,13 @@ public:
     static void* searchServer(void* obj);
     static void* recvServerList(void* obj);
     //TCP connect
-    void startConnectService(int addr);
-    void stopConnectService();
-    //监听tcp通信
+    void connectService(int addr);
+    void disconnectService();
+    //监听tcp通信,接收封包
     static void* listenNetService(void* obj);
-
+    //通过tcp fd 发送封包
+    long sendNetPack(int tag,GNPacket);
+    long sendNetPack(GNPacket);
 };
 
 #endif /* defined(__TestCocos2dx__GNetServer__) */
