@@ -5,6 +5,7 @@
 //  Created by othink on 15/7/7.
 //
 //
+
 #include "GNetApplications.h"
 
 class NetApp1:public GNetApplications{

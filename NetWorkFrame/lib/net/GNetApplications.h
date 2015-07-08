@@ -2,7 +2,7 @@
 //  GNetApplication.h
 //  Cocos2dx
 //
-
+#pragma once
 #include "GNetServer.h"
 
 class GNetApplications:public GNetObserver{
