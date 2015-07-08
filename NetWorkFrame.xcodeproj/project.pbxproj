@@ -7,12 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B0152FDF1B4D1213000B39B7 /* NetApp2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0152FDD1B4D1213000B39B7 /* NetApp2.cpp */; };
+		B0152FE21B4D256E000B39B7 /* GNetApplications.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0152FE01B4D256E000B39B7 /* GNetApplications.cpp */; };
 		B09CB0901B4524070014DD4B /* GNetServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0A9D6C51B4277120069CA8B /* GNetServer.cpp */; };
 		B09CB0921B4524070014DD4B /* GUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0A9D6C91B4277120069CA8B /* GUtils.cpp */; };
 		B09CB0941B4524070014DD4B /* TcpServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0A9D6CB1B4277120069CA8B /* TcpServer.cpp */; };
 		B09CB0961B4524070014DD4B /* UdpServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0A9D6CD1B4277120069CA8B /* UdpServer.cpp */; };
-		B0A0147E1B4BE6A700FDCFE4 /* GApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0A0147D1B4BE6A700FDCFE4 /* GApp.cpp */; };
-		B0A014801B4BE98F00FDCFE4 /* GConApplications.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0A0147F1B4BE98F00FDCFE4 /* GConApplications.cpp */; };
+		B0A0147E1B4BE6A700FDCFE4 /* NetApp1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0A0147D1B4BE6A700FDCFE4 /* NetApp1.cpp */; };
 		B0A9D6A21B426E500069CA8B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A9D6A11B426E500069CA8B /* main.m */; };
 		B0A9D6A51B426E500069CA8B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A9D6A41B426E500069CA8B /* AppDelegate.m */; };
 		B0A9D6A81B426E500069CA8B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A9D6A71B426E500069CA8B /* ViewController.m */; };
@@ -24,7 +25,6 @@
 		B0A9D6D11B4277120069CA8B /* GUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0A9D6C91B4277120069CA8B /* GUtils.cpp */; };
 		B0A9D6D21B4277120069CA8B /* TcpServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0A9D6CB1B4277120069CA8B /* TcpServer.cpp */; };
 		B0A9D6D31B4277120069CA8B /* UdpServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0A9D6CD1B4277120069CA8B /* UdpServer.cpp */; };
-		B0AFEAB11B4A62FA000D3A04 /* GNetApplications.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0AFEAAF1B4A62FA000D3A04 /* GNetApplications.cpp */; };
 		B0BF8B281B46398800E71FE2 /* RootViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = B0BF8B271B46398800E71FE2 /* RootViewController.mm */; };
 		C8A45AB51B49546800D9FDD4 /* TestMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8A45AB31B49546800D9FDD4 /* TestMain.cpp */; };
 /* End PBXBuildFile section */
@@ -40,12 +40,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B0152FDD1B4D1213000B39B7 /* NetApp2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NetApp2.cpp; path = lib/net/NetApp2.cpp; sourceTree = "<group>"; };
+		B0152FDE1B4D1213000B39B7 /* NetApp2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetApp2.h; path = lib/net/NetApp2.h; sourceTree = "<group>"; };
+		B0152FE01B4D256E000B39B7 /* GNetApplications.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GNetApplications.cpp; sourceTree = "<group>"; };
+		B0152FE11B4D256E000B39B7 /* GNetApplications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNetApplications.h; sourceTree = "<group>"; };
 		B09CB08D1B4520E90014DD4B /* ByteBuffer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ByteBuffer.h; sourceTree = "<group>"; };
-		B0A014791B4B889500FDCFE4 /* GApp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GApp.h; sourceTree = "<group>"; };
-		B0A0147B1B4BE34600FDCFE4 /* GConApplications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GConApplications.h; sourceTree = "<group>"; };
-		B0A0147D1B4BE6A700FDCFE4 /* GApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GApp.cpp; sourceTree = "<group>"; };
-		B0A0147F1B4BE98F00FDCFE4 /* GConApplications.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GConApplications.cpp; sourceTree = "<group>"; };
-		B0A014821B4BEA9C00FDCFE4 /* GConInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GConInterface.h; sourceTree = "<group>"; };
+		B0A014791B4B889500FDCFE4 /* NetApp1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NetApp1.h; path = lib/net/NetApp1.h; sourceTree = "<group>"; };
+		B0A0147D1B4BE6A700FDCFE4 /* NetApp1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NetApp1.cpp; path = lib/net/NetApp1.cpp; sourceTree = "<group>"; };
 		B0A9D69C1B426E4F0069CA8B /* NetWorkFrame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetWorkFrame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0A9D6A01B426E500069CA8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B0A9D6A11B426E500069CA8B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -67,8 +68,6 @@
 		B0A9D6CC1B4277120069CA8B /* TcpServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TcpServer.h; sourceTree = "<group>"; };
 		B0A9D6CD1B4277120069CA8B /* UdpServer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UdpServer.cpp; sourceTree = "<group>"; };
 		B0A9D6CE1B4277120069CA8B /* UdpServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UdpServer.h; sourceTree = "<group>"; };
-		B0AFEAAF1B4A62FA000D3A04 /* GNetApplications.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GNetApplications.cpp; sourceTree = "<group>"; };
-		B0AFEAB01B4A62FA000D3A04 /* GNetApplications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNetApplications.h; sourceTree = "<group>"; };
 		B0AFEAB21B4A8B63000D3A04 /* GNetObserver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GNetObserver.h; sourceTree = "<group>"; };
 		B0BF8B261B46398800E71FE2 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		B0BF8B271B46398800E71FE2 /* RootViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RootViewController.mm; sourceTree = "<group>"; };
@@ -117,6 +116,10 @@
 		B0A9D69E1B426E500069CA8B /* NetWorkFrame */ = {
 			isa = PBXGroup;
 			children = (
+				B0A0147D1B4BE6A700FDCFE4 /* NetApp1.cpp */,
+				B0A014791B4B889500FDCFE4 /* NetApp1.h */,
+				B0152FDD1B4D1213000B39B7 /* NetApp2.cpp */,
+				B0152FDE1B4D1213000B39B7 /* NetApp2.h */,
 				C8A45AB31B49546800D9FDD4 /* TestMain.cpp */,
 				C8A45AB41B49546800D9FDD4 /* TestMain.h */,
 				B0BF8B261B46398800E71FE2 /* RootViewController.h */,
@@ -182,13 +185,8 @@
 				B0A9D6C51B4277120069CA8B /* GNetServer.cpp */,
 				B0A9D6C61B4277120069CA8B /* GNetServer.h */,
 				B0AFEAB21B4A8B63000D3A04 /* GNetObserver.h */,
-				B0AFEAAF1B4A62FA000D3A04 /* GNetApplications.cpp */,
-				B0AFEAB01B4A62FA000D3A04 /* GNetApplications.h */,
-				B0A014821B4BEA9C00FDCFE4 /* GConInterface.h */,
-				B0A0147B1B4BE34600FDCFE4 /* GConApplications.h */,
-				B0A0147F1B4BE98F00FDCFE4 /* GConApplications.cpp */,
-				B0A014791B4B889500FDCFE4 /* GApp.h */,
-				B0A0147D1B4BE6A700FDCFE4 /* GApp.cpp */,
+				B0152FE01B4D256E000B39B7 /* GNetApplications.cpp */,
+				B0152FE11B4D256E000B39B7 /* GNetApplications.h */,
 			);
 			path = net;
 			sourceTree = "<group>";
@@ -241,6 +239,7 @@
 				TargetAttributes = {
 					B0A9D69B1B426E4F0069CA8B = {
 						CreatedOnToolsVersion = 6.3.2;
+						DevelopmentTeam = SWK3MEZGSM;
 					};
 					B0A9D6B41B426E500069CA8B = {
 						CreatedOnToolsVersion = 6.3.2;
@@ -292,17 +291,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B0AFEAB11B4A62FA000D3A04 /* GNetApplications.cpp in Sources */,
 				B0BF8B281B46398800E71FE2 /* RootViewController.mm in Sources */,
 				B0A9D6CF1B4277120069CA8B /* GNetServer.cpp in Sources */,
 				B0A9D6A81B426E500069CA8B /* ViewController.m in Sources */,
 				B0A9D6A51B426E500069CA8B /* AppDelegate.m in Sources */,
-				B0A0147E1B4BE6A700FDCFE4 /* GApp.cpp in Sources */,
+				B0A0147E1B4BE6A700FDCFE4 /* NetApp1.cpp in Sources */,
 				C8A45AB51B49546800D9FDD4 /* TestMain.cpp in Sources */,
-				B0A014801B4BE98F00FDCFE4 /* GConApplications.cpp in Sources */,
 				B0A9D6D21B4277120069CA8B /* TcpServer.cpp in Sources */,
+				B0152FDF1B4D1213000B39B7 /* NetApp2.cpp in Sources */,
 				B0A9D6A21B426E500069CA8B /* main.m in Sources */,
 				B0A9D6D31B4277120069CA8B /* UdpServer.cpp in Sources */,
+				B0152FE21B4D256E000B39B7 /* GNetApplications.cpp in Sources */,
 				B0A9D6D11B4277120069CA8B /* GUtils.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -380,6 +379,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -428,6 +428,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";

@@ -4,16 +4,20 @@
 //
 
 #include "GNetServer.h"
-#include "GConInterface.h"
 
 class GNetApplications:public GNetObserver{
 private:
-    std::map<std::string,std::vector<GNPacket>*> dataMap;
-    std::map<std::string,GConInterface*> controllerMap;
+    GNetServer* gns;
 public:
-    GNetApplications(void){}
-    virtual ~GNetApplications(void){}
-    void distributeData(GNPacket);
-    void registerDataContainer(std::string,std::vector<GNPacket>*);
+    GNetApplications(){
+        gns=GNetServer::shareInstance();
+    }
+    ~GNetApplications(){}
+    virtual void Update(GNPacket){}
+    virtual void testUpdate(std::string){}
+    
+    bool bind(std::string key){
+        return gns->addObs(key, this);
+    }
 };
 

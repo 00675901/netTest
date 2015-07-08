@@ -7,7 +7,7 @@
 //////////////////////////////////////////////////////////////////////////
 // 数据包
 struct GNPacket{
-    int code;	//< 操作码
+    int code;
     std::string NPCode;	///< 操作码
     std::string	data;
 };

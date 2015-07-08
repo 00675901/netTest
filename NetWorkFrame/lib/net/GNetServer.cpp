@@ -5,6 +5,14 @@
 
 #include "GNetServer.h"
 
+static GNetServer* GNetServerInstance;
+GNetServer* GNetServer::shareInstance(){
+    if (!GNetServerInstance) {
+        GNetServerInstance=new GNetServer();
+    }
+    return GNetServerInstance;
+}
+
 //use member function
 unsigned int* GNetServer::getLocalIP(){
     return &localIP;
@@ -147,26 +155,26 @@ void* GNetServer::listenNetService(void* obj){
                     close(iter->first);
                     tempRemotaFD->erase(iter++);
                 }else{
-//                    string topc=tgcd.NPCode;
-//                    string tdat=tgcd.data;
-//                    if (topc.compare(GNOC_SIP)==0) {
-//                        int reip=GUtils::ctoi(tdat.c_str());
-//                        printf("remota Msg:%s(--%d--)\n",tdat.c_str(),reip);
-//                        int tempremo=tempTcps->isConnect(reip, 52125);
-//                        if (tempremo>0) {
-//                            tempRemotaFD->insert(tp(tempremo,reip));
-//                        }
-//                    }else if (topc.compare(GNOC_GIP)==0){
-//                        map<int,unsigned int>::iterator iters;
-//                        for (iters=tempRemotaFD->begin(); iters!=tempRemotaFD->end(); ++iters) {
-//                            tgcd.code=0;
-//                            tgcd.NPCode=GNOC_SIP;
-//                            tgcd.data=iter->second;
-//                            tempbb<<tgcd;
-//                            tempTcps->sendData(iters->first,(char*)tempbb.contents());
-//                        }
-//                    }
-                    temp->notify(tgcd);
+                    std::string topc=tgcd.NPCode;
+                    std::string tdat=tgcd.data;
+                    if (topc.compare(GNOC_SIP)==0) {
+                        int reip=GUtils::ctoi(tdat.c_str());
+                        printf("remota Msg:%s(--%d--)\n",tdat.c_str(),reip);
+                        int tempremo=tempTcps->isConnect(reip, 52125);
+                        if (tempremo>0) {
+                            tempRemotaFD->insert(tp(tempremo,reip));
+                        }
+                    }else if (topc.compare(GNOC_GIP)==0){
+                        std::map<int,unsigned int>::iterator iters;
+                        for (iters=tempRemotaFD->begin(); iters!=tempRemotaFD->end(); ++iters) {
+                            tgcd.code=0;
+                            tgcd.NPCode=GNOC_SIP;
+                            tgcd.data=iter->second;
+                            tempbb<<tgcd;
+                            tempTcps->sendData(iters->first,(char*)tempbb.contents());
+                        }
+                    }
+                    temp->distributeData(tgcd);
                     iter++;
                 }
 //                GSNotificationPool::shareInstance()->postNotification("updateRoom", NULL);
@@ -291,9 +299,9 @@ void GNetServer::connectService(int addr){
                 typedef std::pair<int, int> tp;
                 remoteFDIP.insert(tp(remoteFD,addr));
                 GNPacket msg;
-                msg.code=0;
-                msg.NPCode=GNOC_GIP;
-                msg.data="0";
+//                msg.code=0;
+//                msg.NPCode=GNOC_GIP;
+//                msg.data="0";
                 bb<<msg;
                 tcps->sendData(remoteFD,(char*)bb.contents());
             }

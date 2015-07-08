@@ -16,8 +16,6 @@
 #include "PackDefine.h"
 #include "GNetObserver.h"
 
-//using namespace std;
-
 #define GNOC_GIP ((char *)"si01")
 #define GNOC_SIP ((char *)"si02")
 #define GNOC_SSNAME ((char *)"sn01")
@@ -33,6 +31,11 @@ private:
         SERVER_C_PAUSE,
         SERVER_C_TCP_RUN
     }serverStatus;
+    enum{
+        NETNULL,
+        GETIP,
+        SENDIP
+    }NetOPCode;
     
     std::map<std::string,GNetObserver*> obmap;
     
@@ -64,9 +67,9 @@ private:
     //TCP connect
     pthread_t tidConnectService;
     
-public:
     GNetServer(void){
         serverStatus=SERVER_STOP;
+        NetOPCode=NETNULL;
         pthread_mutex_init(&mut, NULL);
         printf("GNetServer BEGIN\n");
     }
@@ -75,18 +78,38 @@ public:
         pthread_mutex_destroy(&mut);
         printf("GNetServer END\n");
     }
+public:
+    
+    static GNetServer* shareInstance();
     //netService secretary
-    void addObs(std::string name ,GNetObserver* gob){obmap.insert(std::make_pair(name, gob));}
-    void removeObs(std::string name){obmap.erase(name);}
-    void notify(std::string name,GNPacket tp){
-        obmap[name]->distributeData(tp);
+    bool addObs(std::string name ,GNetObserver* gob){
+        if (obmap.find(name)==obmap.end()) {
+            obmap.insert(std::make_pair(name, gob));
+            return true;
+        }
+        return false;
     }
-    void notify(GNPacket tp){
+    void removeObs(std::string name){obmap.erase(name);}
+    void removeAllObs(){obmap.clear();}
+    void distributeData(std::string name,GNPacket tp){
+        obmap[name]->Update(tp);
+    }
+    void distributeData(GNPacket tp){
         std::map<std::string,GNetObserver*>::iterator iter=obmap.begin();
         while (iter!=obmap.end()) {
-            ((*iter).second)->distributeData(tp);
+            ((*iter).second)->Update(tp);
             iter++;
         }
+    }
+    void testaaaa(){
+        std::cout<<"---------------------------------------"<<std::endl;
+        std::cout<<"obmap size:"<<obmap.size()<<std::endl;
+        std::map<std::string,GNetObserver*>::iterator iters;
+        for (iters=obmap.begin(); iters!=obmap.end(); ++iters) {
+            std::cout<<"key:"<<iters->first<<"---value:"<<iters->second<<std::endl;
+            iters->second->testUpdate(iters->first);
+        }
+        std::cout<<"---------------------------------------"<<std::endl;
     }
     
     //use member function
