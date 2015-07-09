@@ -20,10 +20,10 @@ unsigned int* GNetServer::getLocalIP(){
 const char* GNetServer::getLocalName(){
     return localName;
 }
-std::map<int,unsigned int>* GNetServer::getRemoteFDIP(){
+std::map<unsigned int,int>* GNetServer::getRemoteFDIP(){
     return &remoteFDIP;
 }
-std::map<int, std::string>* GNetServer::getTempUdpMap(){
+std::map<unsigned int, std::string>* GNetServer::getTempUdpMap(){
     return &udpMap;
 }
 
@@ -59,9 +59,9 @@ void GNetServer::stopResponseService(){
     if(SERVER_S_RUN==serverStatus){
         pthread_cancel(tidRoomService);
         pthread_cancel(tidListenRoomService);
-        std::map<int,unsigned int>::iterator iter;
+        std::map<unsigned int,int>::iterator iter;
         for (iter=remoteFDIP.begin(); iter!=remoteFDIP.end(); ++iter) {
-            close(iter->first);
+            close(iter->second);
         }
         remoteFDIP.clear();
         delete tcps;
@@ -101,13 +101,10 @@ void* GNetServer::listenNetService(void* obj){
     int tempLocalFD=temp->localFD;
     fd_set *temptRfdset=&(temp->rfdset);
     ByteBuffer tempbb=temp->bb;
-    std::map<int,unsigned int> *tempRemotaFD=&(temp->remoteFDIP);
+    std::map<unsigned int,int> *tempRemotaFD=&(temp->remoteFDIP);
     std::string tempLocalName=temp->localName;
     int res;
     int maxFD=0;
-    //    struct timeval ov;
-    //    ov.tv_sec=1;
-    //    ov.tv_usec=0;
     typedef std::pair<int,unsigned int> tp;
     typedef std::pair<int,std::string> ta;
     std::string ts1="a player join the room!";
@@ -117,13 +114,13 @@ void* GNetServer::listenNetService(void* obj){
         FD_ZERO(temptRfdset);
         FD_SET(tempLocalFD, temptRfdset);
         maxFD=maxFD>tempLocalFD?maxFD:tempLocalFD;
-        std::map<int,unsigned int>::iterator iter;
+        std::map<unsigned int,int>::iterator iter;
         for (iter=tempRemotaFD->begin(); iter!=tempRemotaFD->end(); ++iter) {
-            FD_SET(iter->first, temptRfdset);
+            FD_SET(iter->second, temptRfdset);
         }
         if (!tempRemotaFD->empty()) {
             --iter;
-            maxFD=maxFD>(iter->first)?maxFD:(iter->first);
+            maxFD=maxFD>(iter->second)?maxFD:(iter->second);
         }
         int sel=select(maxFD+1, temptRfdset, NULL, NULL, NULL);
         if (sel<0) {
@@ -137,22 +134,22 @@ void* GNetServer::listenNetService(void* obj){
             sockaddr_in remoteAddr;
             if ((res=tempTcps->isAccept(&remoteAddr))>0) {
                 unsigned int reAddr=remoteAddr.sin_addr.s_addr;
-                tempRemotaFD->insert(tp(res,reAddr));
+                tempRemotaFD->insert(tp(reAddr,res));
             }
         }
         iter=tempRemotaFD->begin();
         while (iter!=tempRemotaFD->end()) {
-            if (FD_ISSET(iter->first, temptRfdset)){
+            if (FD_ISSET(iter->second, temptRfdset)){
                 GNPacket tgcd;
                 char* pDataBuffer;
-                long lenr=tempTcps->recvData(iter->first,pDataBuffer);
+                long lenr=tempTcps->recvData(iter->second,pDataBuffer);
                 // 清除缓存中数据
                 tempbb.clear();
                 // 将数据加入到缓存中去
                 tempbb.append((uint8_t*)pDataBuffer, sizeof(pDataBuffer));
                 tempbb>>tgcd;
                 if (lenr<=0) {
-                    close(iter->first);
+                    close(iter->second);
                     tempRemotaFD->erase(iter++);
                 }else{
                     std::string topc=tgcd.NPCode;
@@ -162,16 +159,16 @@ void* GNetServer::listenNetService(void* obj){
                         printf("remota Msg:%s(--%d--)\n",tdat.c_str(),reip);
                         int tempremo=tempTcps->isConnect(reip, 52125);
                         if (tempremo>0) {
-                            tempRemotaFD->insert(tp(tempremo,reip));
+                            tempRemotaFD->insert(tp(reip,tempremo));
                         }
                     }else if (topc.compare(GNOC_GIP)==0){
-                        std::map<int,unsigned int>::iterator iters;
+                        std::map<unsigned int,int>::iterator iters;
                         for (iters=tempRemotaFD->begin(); iters!=tempRemotaFD->end(); ++iters) {
                             tgcd.code=0;
                             tgcd.NPCode=GNOC_SIP;
                             tgcd.data=iter->second;
                             tempbb<<tgcd;
-                            tempTcps->sendData(iters->first,(char*)tempbb.contents());
+                            tempTcps->sendData(iters->second,(char*)tempbb.contents());
                         }
                     }
                     temp->distributeData(tgcd);
@@ -228,12 +225,12 @@ void* GNetServer::searchServer(void* obj){
     pthread_mutex_t* tempmut=&(temp->mut);
     std::map<int, int>* temproomlist=&(temp->udpMapStatus);
     std::map<int, int>::iterator itm;
-    std::map<int, std::string>* temproomlistInfo=&(temp->udpMap);
-    std::map<int, std::string>::iterator itminfo;
+    std::map<unsigned int, std::string>* temproomlistInfo=&(temp->udpMap);
+    std::map<unsigned int, std::string>::iterator itminfo;
     while (true) {
         pthread_testcancel();
-        char s[]="1";
-        tempudp->sendMsg(s);
+        char s='1';
+        tempudp->sendMsg(&s);
         pthread_mutex_lock(tempmut);
         itm=temproomlist->begin();
         while (itm!=temproomlist->end()) {
@@ -260,7 +257,7 @@ void* GNetServer::recvServerList(void* obj){
     UdpServer* tempudps=tempgr->udps;
     pthread_mutex_t* tempmut=&(tempgr->mut);
     std::map<int, int>* temproomlist=&(tempgr->udpMapStatus);
-    std::map<int, std::string>* temproomlistInfo=&(tempgr->udpMap);
+    std::map<unsigned int, std::string>* temproomlistInfo=&(tempgr->udpMap);
     std::map<int, int>::iterator itm;
     typedef std::pair<int, int> tp;
     typedef std::pair<int, std::string> ts;
@@ -272,15 +269,14 @@ void* GNetServer::recvServerList(void* obj){
         if (lenr>0) {
             std::string temprip=GUtils::cptos(inet_ntoa(remoteRecAddr.sin_addr));
             int rip=remoteRecAddr.sin_addr.s_addr;
-            int liveCount=6;
             pthread_mutex_lock(tempmut);
             itm=temproomlist->find(rip);
             if (itm==temproomlist->end()) {
-                temproomlist->insert(tp(rip,liveCount));
+                temproomlist->insert(tp(rip,UDPLIVECOUNT));
                 temproomlistInfo->insert(ts(rip,tbuffer));
                 //搜索到一个UDP信号
             }else{
-                itm->second=liveCount;
+                itm->second=UDPLIVECOUNT;
             }
             pthread_mutex_unlock(tempmut);
         }
@@ -317,9 +313,9 @@ long GNetServer::sendNetPack(int tag,GNPacket np){
 }
 long GNetServer::sendNetPack(GNPacket np){
     long i=0;
-    std::map<int,unsigned int>::iterator iter;
+    std::map<unsigned int,int>::iterator iter;
     for (iter=remoteFDIP.begin(); iter!=remoteFDIP.end(); ++iter) {
-        i+=sendNetPack(iter->first, np);
+        i+=sendNetPack(iter->second, np);
     }
     return i;
 }
@@ -327,9 +323,9 @@ long GNetServer::sendNetPack(GNPacket np){
 void GNetServer::disconnectService(){
     if (SERVER_C_TCP_RUN==serverStatus){
         pthread_cancel(tidConnectService);
-        std::map<int,unsigned int>::iterator iter;
+        std::map<unsigned int,int>::iterator iter;
         for (iter=remoteFDIP.begin(); iter!=remoteFDIP.end(); ++iter) {
-            close(iter->first);
+            close(iter->second);
         }
         remoteFDIP.clear();
         close(localFD);

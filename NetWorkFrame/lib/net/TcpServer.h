@@ -2,8 +2,8 @@
 //  TcpServer.h
 //
 
-#ifndef __cocos2dxTest__TcpServer__
-#define __cocos2dxTest__TcpServer__
+#ifndef __TcpServer__
+#define __TcpServer__
 
 #include <unistd.h>
 #include <arpa/inet.h>
@@ -28,6 +28,6 @@ public:
     long sendData(int remoteSo,char* msg);
     long recvData(int remoteSo,char* buffer);
 };
-#endif /* defined(__cocos2dxTest__TcpServer__) */
+#endif /* defined(__TcpServer__) */
 
 

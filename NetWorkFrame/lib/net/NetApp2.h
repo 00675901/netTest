@@ -12,7 +12,6 @@ class NetApp2:public GNetApplications{
 public:
     std::string name;
     NetApp2(){
-        name="de";
         printf("NetApp2 begin\n");
     }
     ~NetApp2(){
@@ -22,8 +21,8 @@ public:
     
     }
     
-    void testUpdate(std::string a){
-        name=a;
-    }
+//    void testUpdate(std::string a){
+//        name=a;
+//    }
 };
 

@@ -2,8 +2,8 @@
 //  UDPServer.h
 //
 
-#ifndef __cocos2dxTest__UdpServer__
-#define __cocos2dxTest__UdpServer__
+#ifndef __UdpServer__
+#define __UdpServer__
 
 #include <unistd.h>
 #include <sys/socket.h>
@@ -28,4 +28,4 @@ public:
     long recvMsg(char* buff,unsigned const int len,sockaddr_in* remoteRecAD);
 };
 
-#endif /* defined(__cocos2dxTest__UdpServer__) */
+#endif /* defined(__UdpServer__) */

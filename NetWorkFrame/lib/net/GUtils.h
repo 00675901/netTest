@@ -3,8 +3,8 @@
 //  Cocos2dx
 //
 
-#ifndef __TestCocos2dx__GUtils__
-#define __TestCocos2dx__GUtils__
+#ifndef __GUtils__
+#define __GUtils__
 
 #include <iostream>
 #include <sstream>
@@ -20,8 +20,9 @@ public:
     static int bytes2int(const char* bytes);
     static void int2bytes(int i,unsigned char* bytes);
     static std::string itos(int i);
+    static std::string ltos(long l);
     static std::string cptos(char* s);
     static int ctoi(const char* c);
 };
 
-#endif /* defined(__TestCocos2dx__GUtils__) */
+#endif /* defined(__GUtils__) */

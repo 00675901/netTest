@@ -15,6 +15,12 @@ std::string GUtils::itos(int i){
     return s.str();
 }
 
+std::string GUtils::ltos(long l){
+    std::stringstream s;
+    s<<l;
+    return s.str();
+}
+
 std::string GUtils::cptos(char* s){
     std::string ss(s);
     return ss;

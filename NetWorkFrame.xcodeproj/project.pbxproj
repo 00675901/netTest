@@ -26,6 +26,7 @@
 		B0A9D6D21B4277120069CA8B /* TcpServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0A9D6CB1B4277120069CA8B /* TcpServer.cpp */; };
 		B0A9D6D31B4277120069CA8B /* UdpServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0A9D6CD1B4277120069CA8B /* UdpServer.cpp */; };
 		B0BF8B281B46398800E71FE2 /* RootViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = B0BF8B271B46398800E71FE2 /* RootViewController.mm */; };
+		B0E214731B4E6776003FFA57 /* NetAppCCJSController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0E214711B4E6776003FFA57 /* NetAppCCJSController.cpp */; };
 		C8A45AB51B49546800D9FDD4 /* TestMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8A45AB31B49546800D9FDD4 /* TestMain.cpp */; };
 /* End PBXBuildFile section */
 
@@ -72,6 +73,8 @@
 		B0BF8B261B46398800E71FE2 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		B0BF8B271B46398800E71FE2 /* RootViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RootViewController.mm; sourceTree = "<group>"; };
 		B0BF8B2A1B464F5F00E71FE2 /* PackDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PackDefine.h; sourceTree = "<group>"; };
+		B0E214711B4E6776003FFA57 /* NetAppCCJSController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NetAppCCJSController.cpp; path = lib/net/NetAppCCJSController.cpp; sourceTree = "<group>"; };
+		B0E214721B4E6776003FFA57 /* NetAppCCJSController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetAppCCJSController.h; path = lib/net/NetAppCCJSController.h; sourceTree = "<group>"; };
 		C8A45AB31B49546800D9FDD4 /* TestMain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestMain.cpp; path = lib/net/TestMain.cpp; sourceTree = "<group>"; };
 		C8A45AB41B49546800D9FDD4 /* TestMain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestMain.h; path = lib/net/TestMain.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -116,6 +119,8 @@
 		B0A9D69E1B426E500069CA8B /* NetWorkFrame */ = {
 			isa = PBXGroup;
 			children = (
+				B0E214711B4E6776003FFA57 /* NetAppCCJSController.cpp */,
+				B0E214721B4E6776003FFA57 /* NetAppCCJSController.h */,
 				B0A0147D1B4BE6A700FDCFE4 /* NetApp1.cpp */,
 				B0A014791B4B889500FDCFE4 /* NetApp1.h */,
 				B0152FDD1B4D1213000B39B7 /* NetApp2.cpp */,
@@ -302,6 +307,7 @@
 				B0A9D6A21B426E500069CA8B /* main.m in Sources */,
 				B0A9D6D31B4277120069CA8B /* UdpServer.cpp in Sources */,
 				B0152FE21B4D256E000B39B7 /* GNetApplications.cpp in Sources */,
+				B0E214731B4E6776003FFA57 /* NetAppCCJSController.cpp in Sources */,
 				B0A9D6D11B4277120069CA8B /* GUtils.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
