@@ -4,9 +4,6 @@
 //
 
 #include "TestMain.h"
-
-#include "NetApp1.h"
-#include "NetApp2.h"
 #include "NetAppCCJSController.h"
 
 
@@ -21,27 +18,7 @@ void tmTest2(int aa,int bb){
 }
 
 void TestMain::begin(){
-    NetApp1 *a1=new NetApp1();
-    a1->bind();
-    NetApp1 *a2=new NetApp1();
-    a2->bind();
     
-    NetApp2 *b1=new NetApp2();
-    b1->bind();
-    NetApp2 *b2=new NetApp2();
-    b2->bind();
-    
-    GNPacket msg;
-
-    a1->sendMsg(msg);
-    a2->sendMsg(msg);
-    b1->sendMsg(msg);
-    b2->sendMsg(msg);
-    
-    delete a1;
-    delete a2;
-    delete b1;
-    delete b2;
 ////////////////////////////////////////////////////////////////
     
 }

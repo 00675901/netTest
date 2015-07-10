@@ -11,8 +11,8 @@ void NetAppCCJSController::start_server(int playerCount,std::string serverName){
     gns->startResponseService(playerCount, serverName.c_str());
 }
 //启动客户端
-void NetAppCCJSController::start_client(){
-    gns->startSearchService();
+void NetAppCCJSController::start_client(std::string clientName){
+    gns->startSearchService(clientName.c_str());
 }
 //连接服务器
 void NetAppCCJSController::connect_server(int ip){
@@ -29,7 +29,13 @@ std::string NetAppCCJSController::get_player_list(){
 };
 //发送信息
 bool NetAppCCJSController::send_message(std::string jsonString){
-    return true;
+    GNPacket msg;
+    msg.UUID=this->UDID;
+    msg.data=jsonString;
+    if(gns->sendNetPack(msg)>0){
+        return true;
+    }
+    return false;
 }
 //获取信息
 std::string NetAppCCJSController::get_message(){

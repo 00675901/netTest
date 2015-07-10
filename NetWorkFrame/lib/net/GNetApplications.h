@@ -11,9 +11,13 @@
 class GNetApplications:public GNetObserver{
 public:
     GNetApplications(){
+        pthread_mutex_init(&mut, NULL);
         gns=GNetServer::shareInstance();
     }
-    ~GNetApplications(){}
+    ~GNetApplications(){
+        pthread_mutex_destroy(&mut);
+    }
+    pthread_mutex_t mut;
     std::string UDID;
     GNetServer* gns;
     bool bind(){
@@ -25,12 +29,10 @@ public:
         UDID=keys;
         return gns->addObs(UDID, this);
     }
+    virtual void NewConnection(GNPacket){}
     virtual void Update(GNPacket){}
+    virtual void DisConnection(GNPacket){}
+    
 //    virtual void testUpdate(std::string){}
-    void sendMsg(GNPacket msg){
-        msg.UUID=this->UDID;
-        std::cout<<"UDID="<<this->UDID<<std::endl;
-        gns->sendNetPack(msg);
-    }
 };
 

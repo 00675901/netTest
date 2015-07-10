@@ -16,75 +16,69 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DXn-fk-vgy">
-                                <rect key="frame" x="277" y="328" width="46" height="30"/>
-                                <state key="normal" title="get1">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="geta1:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Wum-Wi-SE4"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xp3-9Z-MHI">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xp3-9Z-MHI">
                                 <rect key="frame" x="277" y="234" width="46" height="30"/>
-                                <state key="normal" title="set1">
+                                <state key="normal" title="Creat Room">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <variation key="widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="340" y="316" width="120" height="40"/>
+                                </variation>
                                 <connections>
-                                    <action selector="seta1:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DFg-hA-tPy"/>
+                                    <action selector="createRoom:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ffr-jM-NbT"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aiL-db-g0f">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eHl-C9-H4O">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="231" y="233" width="60" height="30"/>
+                                </variation>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rFV-gn-Kho">
+                                <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <variation key="widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="299" y="233" width="270" height="30"/>
+                                </variation>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aiL-db-g0f">
                                 <rect key="frame" x="410" y="234" width="46" height="30"/>
-                                <state key="normal" title="set2">
+                                <state key="normal" title="Join Room">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <variation key="widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="340" y="383" width="120" height="40"/>
+                                </variation>
                                 <connections>
-                                    <action selector="seta2:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fhE-G8-dO2"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cUC-HY-yoR">
-                                <rect key="frame" x="410" y="328" width="46" height="30"/>
-                                <state key="normal" title="get2">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="geta2:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kf4-Ev-5GQ"/>
+                                    <action selector="JoinRoom:" destination="BYZ-38-t0r" eventType="touchUpInside" id="spA-IR-cj6"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="cUC-HY-yoR" firstAttribute="top" secondItem="aiL-db-g0f" secondAttribute="bottom" constant="64" id="2az-zU-bUl"/>
-                            <constraint firstItem="aiL-db-g0f" firstAttribute="leading" secondItem="Xp3-9Z-MHI" secondAttribute="trailing" constant="87" id="3eg-Nh-goq"/>
-                            <constraint firstItem="DXn-fk-vgy" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="277" id="A7R-aV-ud8"/>
-                            <constraint firstAttribute="trailing" secondItem="Xp3-9Z-MHI" secondAttribute="trailing" constant="277" id="MWV-Fn-pA2"/>
-                            <constraint firstItem="aiL-db-g0f" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="214" id="Mtk-Ip-QdH"/>
-                            <constraint firstItem="DXn-fk-vgy" firstAttribute="top" secondItem="Xp3-9Z-MHI" secondAttribute="bottom" constant="64" id="PKf-fh-A7G"/>
-                            <constraint firstItem="cUC-HY-yoR" firstAttribute="top" secondItem="aiL-db-g0f" secondAttribute="bottom" constant="64" id="R6n-ld-ZhU"/>
-                            <constraint firstAttribute="trailing" secondItem="DXn-fk-vgy" secondAttribute="trailing" constant="277" id="RYf-YW-HUW"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="cUC-HY-yoR" secondAttribute="bottom" constant="242" id="Ta7-jA-WEA"/>
-                            <constraint firstAttribute="trailing" secondItem="aiL-db-g0f" secondAttribute="trailing" constant="144" id="VCw-TF-2p2"/>
-                            <constraint firstAttribute="trailing" secondItem="cUC-HY-yoR" secondAttribute="trailing" constant="144" id="VfG-lU-GHc"/>
-                            <constraint firstItem="Xp3-9Z-MHI" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="214" id="aeN-Bp-abx"/>
-                            <constraint firstItem="Xp3-9Z-MHI" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="277" id="brU-2c-lQP"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="DXn-fk-vgy" secondAttribute="bottom" constant="242" id="kzE-zG-1q7"/>
-                            <constraint firstItem="cUC-HY-yoR" firstAttribute="top" secondItem="aiL-db-g0f" secondAttribute="bottom" constant="64" id="p4J-JI-HJT"/>
-                            <constraint firstItem="DXn-fk-vgy" firstAttribute="top" secondItem="Xp3-9Z-MHI" secondAttribute="bottom" constant="64" id="uzd-37-BUr"/>
-                            <constraint firstItem="cUC-HY-yoR" firstAttribute="top" secondItem="aiL-db-g0f" secondAttribute="bottom" constant="64" id="vnp-UY-n1w"/>
-                            <constraint firstItem="cUC-HY-yoR" firstAttribute="leading" secondItem="DXn-fk-vgy" secondAttribute="trailing" constant="87" id="zyo-f5-kxY"/>
-                        </constraints>
                         <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="2az-zU-bUl"/>
-                                <exclude reference="R6n-ld-ZhU"/>
+                            <mask key="subviews">
+                                <exclude reference="eHl-C9-H4O"/>
+                                <exclude reference="rFV-gn-Kho"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=regular">
+                            <mask key="subviews">
+                                <include reference="eHl-C9-H4O"/>
+                                <include reference="rFV-gn-Kho"/>
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="nameLable" destination="rFV-gn-Kho" id="R1j-sv-a5d"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="349" y="244"/>
+            <point key="canvasLocation" x="348.75" y="244"/>
         </scene>
     </scenes>
 </document>

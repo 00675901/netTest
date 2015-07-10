@@ -16,11 +16,6 @@
 #include "PackDefine.h"
 #include "GNetObserver.h"
 
-#define GNOC_GIP ((char *)"si01")
-#define GNOC_SIP ((char *)"si02")
-#define GNOC_SSNAME ((char *)"sn01")
-#define GNOC_SCNAME ((char *)"sn02")
-
 #define UDPLIVECOUNT 5
 
 class GNetServer{
@@ -33,11 +28,14 @@ private:
         SERVER_C_PAUSE,
         SERVER_C_TCP_RUN
     }serverStatus;
+    
     enum{
-        NETNULL,
-        GETIP,
-        SENDIP
-    }NetOPCode;
+        NEWCONNECTION,
+        DISCONNECTION,
+        PLAYER_NAME,
+        REPLAYER_NAME,
+        SEND_IP
+    }sysEvent;
     
     std::map<std::string,GNetObserver*> obmap;
     
@@ -50,7 +48,7 @@ private:
     int localFD;
     const char* localName;
     //除自己之外,fd-ip表
-    std::map<unsigned int,int> remoteFDIP;
+    std::map<int,unsigned int> remoteFDIP;
     fd_set rfdset;
     ByteBuffer bb;
     
@@ -71,7 +69,6 @@ private:
     
     GNetServer(void){
         serverStatus=SERVER_STOP;
-        NetOPCode=NETNULL;
         pthread_mutex_init(&mut, NULL);
         printf("GNetServer BEGIN\n");
     }
@@ -95,12 +92,29 @@ public:
     void distributeData(std::string name,GNPacket tp){
         obmap[name]->Update(tp);
     }
-    void distributeData(GNPacket tp){
-        std::map<std::string,GNetObserver*>::iterator iter=obmap.begin();
-        while (iter!=obmap.end()) {
+    //数据包群发通知
+    void notificationData(GNPacket tp){
+         std::map<std::string,GNetObserver*>::iterator iter=obmap.begin();
+         while (iter!=obmap.end()) {
             ((*iter).second)->Update(tp);
             iter++;
+         }
+    }
+    //系统全局通知
+    void notificationSystemData(GNPacket tp){
+        std::map<std::string,GNetObserver*>::iterator iter=obmap.begin();
+        if (NEWCONNECTION==tp.sysCode) {       //操作码为1 通知所有ob有新连接
+            while (iter!=obmap.end()) {
+                ((*iter).second)->NewConnection(tp);
+                iter++;
+            }
+        }else if(DISCONNECTION==tp.sysCode){  //操作码为-1 通知所有ob有断开连接
+            while (iter!=obmap.end()) {
+                ((*iter).second)->DisConnection(tp);
+                iter++;
+            }
         }
+        
     }
 //    void testaaaa(){
 //        std::cout<<"---------------------------------------"<<std::endl;
@@ -116,7 +130,7 @@ public:
     //use member function
     unsigned int* getLocalIP();
     const char* getLocalName();
-    std::map<unsigned int,int>* getRemoteFDIP(); //获取除自己外fd-ip表
+    std::map<int,unsigned int>* getRemoteFDIP(); //获取除自己外fd-ip表
     std::map<unsigned int, std::string>* getTempUdpMap();
     
     //UDP Send localIP Service function
@@ -126,7 +140,7 @@ public:
     void stopResponseService();
     static void* responseService(void* obj);
     //UDP search response
-    void startSearchService();
+    void startSearchService(const char* uname);
     void pauseSearchService();
     void resumeSearchService();
     void stopSearchService();
@@ -136,9 +150,10 @@ public:
     void connectService(int addr);
     void disconnectService();
     //监听tcp通信,接收封包
-    static void* listenNetService(void* obj);
+    static void* listenSNetService(void* obj);
+    static void* listenCNetService(void* obj);
     //通过tcp fd 发送封包
-    long sendNetPack(int tag,GNPacket);
+    long sendNetPack(int,GNPacket);
     long sendNetPack(GNPacket);
 };
 
