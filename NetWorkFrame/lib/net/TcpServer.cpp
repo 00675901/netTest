@@ -100,6 +100,10 @@ long TcpServer::recvData(int remoteSo,char* buffer){
 
 long TcpServer::sendData(int remoteSo,char* msg){
     long len=strlen(msg);
+    printf("send content:%s\n",msg);
     long re=send(remoteSo, msg, len, 0);
+    if (re<0) {
+        printf("TCP_send_fail\n");
+    }
     return re;
 }

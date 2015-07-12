@@ -7,12 +7,36 @@
 //
 #include "NetAppCCJSController.h"
 //启动服务器
-void NetAppCCJSController::start_server(int playerCount,std::string serverName){
-    gns->startResponseService(playerCount, serverName.c_str());
+void NetAppCCJSController::start_server(int playerCount){
+    gns->startResponseService(playerCount, name.c_str());
+}
+//暂停服务器
+void NetAppCCJSController::pause_server_service(){
+    gns->pauseResponseService();
+}
+//恢复服务器
+void NetAppCCJSController::resume_server_service(){
+    gns->resumeResponseService();
+}
+//停止服务器
+void NetAppCCJSController::stop_server_service(){
+    gns->stopResponseService();
 }
 //启动客户端
-void NetAppCCJSController::start_client(std::string clientName){
-    gns->startSearchService(clientName.c_str());
+void NetAppCCJSController::start_client(){
+    gns->startSearchService(name.c_str());
+}
+//暂停客户端
+void NetAppCCJSController::pause_client_service(){
+    gns->pauseSearchService();
+}
+//恢复客户端
+void NetAppCCJSController::resume_client_service(){
+    gns->resumeSearchService();
+}
+//停止客户端
+void NetAppCCJSController::stop_client_service(){
+    gns->stopSearchService();
 }
 //连接服务器
 void NetAppCCJSController::connect_server(int ip){
@@ -24,7 +48,11 @@ std::string NetAppCCJSController::get_server_list(){
 }
 //获取已经连接到服务器的玩家列表
 std::string NetAppCCJSController::get_player_list(){
-//    playerList;
+    std::map<unsigned int,std::string> *tempm=gns->getTempUdpMap();
+    std::map<unsigned int,std::string>::iterator iter;
+    for (iter=tempm->begin(); iter!=tempm->end(); ++iter) {
+        std::cout<<"ip:"<<iter->first<<"----name:"<<iter->second<<std::endl;
+    }
     return "";
 };
 //发送信息
@@ -40,4 +68,12 @@ bool NetAppCCJSController::send_message(std::string jsonString){
 //获取信息
 std::string NetAppCCJSController::get_message(){
     return "";
+}
+
+std::map<unsigned int, std::string>* NetAppCCJSController::getServerList(){
+    return gns->getTempUdpMap();
+}
+
+std::map<int,std::string>* NetAppCCJSController::getPalyerList(){
+    return &playerList;
 }

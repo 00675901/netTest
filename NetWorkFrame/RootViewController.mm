@@ -11,9 +11,17 @@
 
 NetAppCCJSController *netMain;
 
+
+//1879156928--------192.168.1.112
+//1761716416--------192.168.1.105
+//1744939200--------192.168.1.104
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
-    netMain=new NetAppCCJSController("");
+    std::string a="测试玩家No.";
+    std::string b(GUtils::itos((arc4random()%100)+10));
+    a.append(b);
+    netMain=new NetAppCCJSController(a);
     netMain->bind();
 
     [super viewDidLoad];
@@ -26,16 +34,16 @@ NetAppCCJSController *netMain;
 }
 
 -(IBAction)createRoom:(id)sender{
-    if ([self trim:nameLable.text]>0) {
-        std::string a([nameLable.text UTF8String]);
-        netMain->start_server(10, a);
-    }
+    netMain->start_server(10);
 }
 -(IBAction)JoinRoom:(id)sender{
-    if ([self trim:nameLable.text]>0) {
-        std::string a([nameLable.text UTF8String]);
-        netMain->start_client(a);
-    }
+    netMain->start_client();
+    netMain->stop_client_service();
+    netMain->connect_server(1744939200);
+}
+
+-(IBAction)flushTest:(id)sender{
+    netMain->get_player_list();
 }
 
 - (void)didReceiveMemoryWarning {

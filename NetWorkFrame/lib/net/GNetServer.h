@@ -45,7 +45,7 @@ private:
 //    int serverStatus;
     pthread_mutex_t mut;
     unsigned int localIP;
-    int localFD;
+    int localFD=0;
     const char* localName;
     //除自己之外,fd-ip表
     std::map<int,unsigned int> remoteFDIP;

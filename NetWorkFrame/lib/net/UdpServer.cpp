@@ -56,6 +56,9 @@ long UdpServer::sendMsg(const char* msg){
     }else{
         se=-1;
     }
+    if (se<0) {
+        printf("UdpServer_send_fail\n");
+    }
     return se;
 }
 
@@ -65,6 +68,9 @@ long UdpServer::sendMsg(const char* addr,const char* msg){
     }
     long len=strlen(msg);
     long se=sendto(localSo,msg,len,0,(sockaddr *)&remoteBroAddr,sizeof(remoteBroAddr));
+    if (se<0) {
+        printf("UdpServer_send_fail\n");
+    }
     return se;
 }
 

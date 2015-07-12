@@ -13,6 +13,7 @@ public:
     GNetApplications(){
         pthread_mutex_init(&mut, NULL);
         gns=GNetServer::shareInstance();
+        std::cout<<"========================================="<<std::endl;
     }
     ~GNetApplications(){
         pthread_mutex_destroy(&mut);
